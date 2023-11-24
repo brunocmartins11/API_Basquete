@@ -18,8 +18,8 @@ banco.sync().then(() => {
 });
 
 app.get("/jogador", async (req, res) => {
-  const jogador = await jogador.findAll();
-  res.json(jogador);
+  const Jogador = await jogador.findAll();
+  res.json(Jogador);
 });
 
 app.post("/jogador", async (req, res) => {
@@ -33,9 +33,9 @@ app.put("/jogador", async (req, res) => {
   const { nome, posicao, altura, time_atual } = req.body;
 
   await jogador.update({ nome, posicao, altura, time_atual }, { where: { id } });
-  const jogador = await jogador.findByPk(id);
+  const Jogador = await jogador.findByPk(id);
 
-  res.json(jogador);
+  res.json(Jogador);
 });
 
 app.delete("/jogador", async (req, res) => {
