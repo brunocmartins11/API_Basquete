@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const jogador = sequelize.define('jogador', {
+  const Jogador = sequelize.define('Jogador', {
     // Campos do jogador
     nome: {
       type: DataTypes.STRING,
@@ -20,8 +20,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     freezeTableName: true,
     tableName: 'jogadores_basquete',
-    timestamps: false // Define para não criar campos de timestamp
+    timestamps: true,
+    createdAt: 'dataCriacao',
+    updatedAt: 'dataAtualizacao',
+    version: 'versao'
   });
 
-  return jogador;
+  return Jogador;
 };

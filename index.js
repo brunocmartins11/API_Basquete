@@ -1,7 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { Sequelize }= require("sequelize");
+const { Sequelize } = require("sequelize");
 const config = require("./config");
+
+const Jogador = require('./models/jogador');
 
 const app = express();
 const port = 80;
@@ -9,40 +11,33 @@ const port = 80;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const banco = new Sequelize(config.development);
-
-const jogador = banco.define("./models/jogador");
-
-banco.sync().then(() => {
-  console.log("Tabela de jogadores criada!");
+app.get('/jogador', async (req, res) => {
+  const jogadores = await Jogador.findAll();
+  res.json(jogadores);
 });
 
-app.get("/jogador", async (req, res) => {
-  const Jogador = await jogador.findAll();
-  res.json(Jogador);
-});
-
-app.post("/jogador", async (req, res) => {
+app.post('/jogador', async (req, res) => {
   const { nome, posicao, altura, time_atual } = req.body;
-  const Jogador = await jogador.create({ nome, posicao, altura, time_atual });
-  res.json(Jogador);
+  const novoJogador = await Jogador.create({ nome, posicao, altura, time_atual });
+  res.json(novoJogador);
+
 });
 
-app.put("/jogador:id", async (req, res) => {
+app.put('/jogador/:id', async (req, res) => {
   const { id } = req.params;
   const { nome, posicao, altura, time_atual } = req.body;
 
-  await jogador.update({ nome, posicao, altura, time_atual }, { where: { id } });
-  const Jogador = await jogador.findByPk(id);
+  await Jogador.update({ nome, posicao, altura, time_atual }, { where: { id } });
+  const jogadorAtualizado = await Jogador.findByPk(id);
 
-  res.json(Jogador);
+  res.json(jogadorAtualizado);
 });
 
 app.delete("/jogador:id", async (req, res) => {
   const { id } = req.params;
 
-  await jogador.destroy({ where: { id } });
-  res.json({ message: " O jogador foi excluído" });
+  await Jogador.destroy({ where: { id } });
+  res.json({ message: 'O jogador foi excluído' });
 });
 
 //Iniciar o server
