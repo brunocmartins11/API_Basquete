@@ -11,15 +11,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const banco = new Sequelize(config.development);
 
-const Jogador = banco.define("./models/jogador.js");
+const jogador = banco.define("./models/jogador.js");
 
 banco.sync().then(() => {
   console.log("Tabela de jogadores criada!");
 });
 
 app.get("/jogador", async (req, res) => {
-  const jogadors = await jogador.findAll();
-  res.json(jogadors);
+  const jogador = await jogador.findAll();
+  res.json(jogador);
 });
 
 app.post("/jogador", async (req, res) => {
