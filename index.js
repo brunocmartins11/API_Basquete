@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const Sequelize = require("sequelize");
+const { Sequelize }= require("sequelize");
 const config = require("./config");
 
 const app = express();
@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const banco = new Sequelize(config.development);
 
-const jogador = banco.define("./models/jogador.js");
+const jogador = banco.define("./models/jogador");
 
 banco.sync().then(() => {
   console.log("Tabela de jogadores criada!");
