@@ -1,11 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
-  const jogador = sequelize.define(
+  const Jogador = sequelize.define(
     {
-      id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
+      
     nome: {
         type: Sequelize.STRING,
         allowNull: false
@@ -32,5 +28,5 @@ module.exports = (sequelize, DataTypes) => {
       version: 'versao'
     }
   );
-  return jogador;
+  return Jogador;
 };
