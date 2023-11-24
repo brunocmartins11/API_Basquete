@@ -1,22 +1,25 @@
-module.exports = (sequelize, DataTypes) => {
-  const jogador = sequelize.define('jogador', {
-      
-    nome: {
+const { DataTypes } = require('sequelize');
+
+module.exports = (sequelize) => {
+  const Jogador = sequelize.define(
+    'Jogador',
+    {
+      nome: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    posicao: {
+      },
+      posicao: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    altura: {
+      },
+      altura: {
         type: DataTypes.FLOAT,
         allowNull: false
-    },
-    time_atual: {
+      },
+      time_atual: {
         type: DataTypes.STRING,
         allowNull: false
-    },
+      }
     },
     {
       freezeTableName: true,
@@ -27,5 +30,6 @@ module.exports = (sequelize, DataTypes) => {
       version: 'versao'
     }
   );
-  return jogador;
+
+  return Jogador;
 };
