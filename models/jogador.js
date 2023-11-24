@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Jogador = sequelize.define(
+  const jogador = sequelize.define(
     {
       
     nome: {
@@ -28,5 +28,5 @@ module.exports = (sequelize, DataTypes) => {
       version: 'versao'
     }
   );
-  return Jogador;
+  return jogador;
 };
