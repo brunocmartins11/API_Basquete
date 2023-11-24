@@ -1,6 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const jogador = sequelize.define(
-    {
+  const jogador = sequelize.define('jogador', {
       
     nome: {
         type: Sequelize.STRING,
