@@ -3,13 +3,22 @@ const bodyParser = require("body-parser");
 const { Sequelize } = require("sequelize");
 const config = require("./config");
 
-const Jogador = require('./models/jogador');
+
 
 const app = express();
-const port = 80;
+const port = 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+const banco = new Sequelize(config.development);
+
+
+const Jogador = banco.define('./models/jogador');
+
+banco.sync().then(() => {
+  console.log('Modelo sincronizado');
+});
 
 app.get('/jogador', async (req, res) => {
   const jogadores = await Jogador.findAll();
