@@ -2,19 +2,19 @@ module.exports = (sequelize, DataTypes) => {
   const jogador = sequelize.define('jogador', {
       
     nome: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     posicao: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     altura: {
-        type: Sequelize.FLOAT,
+        type: DataTypes.FLOAT,
         allowNull: false
     },
     time_atual: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     },
