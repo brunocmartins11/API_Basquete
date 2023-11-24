@@ -28,7 +28,7 @@ app.post("/jogador", async (req, res) => {
   res.json(Jogador);
 });
 
-app.put("/jogador", async (req, res) => {
+app.put("/jogador:id", async (req, res) => {
   const { id } = req.params;
   const { nome, posicao, altura, time_atual } = req.body;
 
@@ -38,7 +38,7 @@ app.put("/jogador", async (req, res) => {
   res.json(Jogador);
 });
 
-app.delete("/jogador", async (req, res) => {
+app.delete("/jogador:id", async (req, res) => {
   const { id } = req.params;
 
   await jogador.destroy({ where: { id } });
