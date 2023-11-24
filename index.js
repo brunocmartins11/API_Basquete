@@ -24,8 +24,8 @@ app.get("/jogador", async (req, res) => {
 
 app.post("/jogador", async (req, res) => {
   const { nome, posicao, altura, time_atual } = req.body;
-
-  res.json({ nome, posicao, altura, time_atual });
+  const Jogador = await jogador.create({ nome, posicao, altura, time_atual });
+  res.json(Jogador);
 });
 
 app.put("/jogador", async (req, res) => {
